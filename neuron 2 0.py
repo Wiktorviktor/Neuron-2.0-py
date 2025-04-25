@@ -1,17 +1,16 @@
-import Neuron: 
+import numpy as np  # Передбачаю, що використовується numpy, але імпорт його не вказано у вихідному коді.
 
-    def__init__(self, inputs): 
-
- # Inicialize the neuron with a list of inputs \ ініціалізуємо ваги випадковими значеннями
-
-        self.weights = np.random.rand (inputs)
+class Neuron:
+    def __init__(self, inputs):
+        # Ініціалізуємо ваги випадковими значеннями
+        self.weights = np.random.rand(inputs)
         self.bias = np.random.randn()
 
+    def activate(self, x):
+        # Функція активації (ReLU)
+        return 1 / (1 + np.exp(-x))
 
-    def activate (self, x):
-        # Activation function (ReLU) \ функція активації (ReLU)
-        return 1/ (1 + np.exp(-x))
-    def forward (self, inputs): # Forward pass \ прямий прохід \ обчислюємо зважені суми + зміщення (bias)
-    
+    def forward(self, inputs):
+        # Прямий прохід: обчислюємо зважені суми + зміщення (bias)
         total = np.dot(self.weights, inputs) + self.bias
-        return self.activate(total) # Return the activated output \ повертаємо активоване значення
+        return self.activate(total)  # Повертаємо активоване значення
